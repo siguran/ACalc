@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Awesome Calculator</string>
+    <string name="btnN0Text">0</string>
+    <string name="btnN1Text">1</string>
+    <string name="btnN2Text">2</string>
+    <string name="btnN3Text">3</string>
+    <string name="btnN4Text">4</string>
+    <string name="btnN5Text">5</string>
+    <string name="btnN6Text">6</string>
+    <string name="btnN7Text">7</string>
+    <string name="btnN8Text">8</string>
+    <string name="btnN9Text">9</string>
+    <string name="btnOpPlusText">+</string>
+    <string name="btnOpMinusText">-</string>
+    <string name="btnOpMultText">*</string>
+    <string name="btnOpDivText">/</string>
+    <string name="btnResultText">=</string>
+    <string name="btnBkspText">bk</string>
+    <string name="btnCommaText">.</string>
+    <string name="btnSignText">+/-</string>
+    <string name="btnClearText">AC</string>
+</resources>

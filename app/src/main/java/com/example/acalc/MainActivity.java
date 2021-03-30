@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Double v1 = Double.NaN;
     Double v2 = Double.NaN;
     Boolean newInput = false;
+    Boolean isError = false;
     Operations operation;
     TextView tvDisplay;
 
@@ -73,12 +74,18 @@ public class MainActivity extends AppCompatActivity {
         v1 = Double.NaN;
         v2 = Double.NaN;
         newInput = false;
+        isError = false;
         tvDisplay.setText("0");
     }
 
     //стирание одного символа
     public void ButtonBKSPClick(View view)
     {
+        if (isError)
+        {
+            ButtonClearClick(null);
+            return;
+        }
         displayText = (String)tvDisplay.getText();
 
         if (displayText.equals("0")) return;
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
     //десятичный разделитель
     public void ButtonCommaClick(View view)
     {
+        if (isError) return;
         displayText = (String)tvDisplay.getText();
 
         if (newInput) displayText = "0.";
@@ -120,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
     //смена знака
     public void ButtonSignClick(View view)
     {
+        if (isError) return;
         displayText = (String)tvDisplay.getText();
         if (!displayText.equals("0"))
         {
@@ -132,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
     //кнопка "математическая операция"
     public void ButtonOperClick(View view)
     {
+        if (isError) return;
+
         displayText = (String)tvDisplay.getText();
 
         if (!v1.isNaN()) Calc();
@@ -164,7 +175,14 @@ public class MainActivity extends AppCompatActivity {
                 v1 *= v2;
                 break;
             case Div:
-                v1 /= v2;
+                if ((!displayText.equals("0")) && (!displayText.equals("0.")))   v1 /= v2;
+                 else
+                     {
+                         tvDisplay.setText("Divide by 0");
+                         displayText = "0";
+                         isError = true;
+                         return;
+                     }
                 break;
         }
 

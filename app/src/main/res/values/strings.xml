@@ -15,7 +15,7 @@
     <string name="btnOpMultText">*</string>
     <string name="btnOpDivText">/</string>
     <string name="btnResultText">=</string>
-    <string name="btnBkspText">bk</string>
+    <string name="btnBkspText">bcsp</string>
     <string name="btnCommaText">.</string>
     <string name="btnSignText">+/-</string>
     <string name="btnClearText">AC</string>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Settings">
+
+    <LinearLayout
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_margin="30dp"
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Выберите тему"
+            android:textAlignment="center"
+            android:textColorLink="@color/black"
+            android:textSize="30sp" />
+
+        <Button
+            android:layout_margin="30dp"
+            android:textSize="30sp"
+            android:textColor="@color/sand_main"
+            android:background="@drawable/btn_sand"
+            android:layout_weight="2"
+            android:id="@+id/btnSelectThemeSand"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/thmeNameSand" />
+
+        <Button
+            android:layout_margin="30dp"
+            android:textSize="30sp"
+            android:textColor="@color/water_main"
+            android:background="@drawable/btn_water"
+            android:layout_weight="2"
+            android:id="@+id/btnSelectThemeWater"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/thmeNameWater" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

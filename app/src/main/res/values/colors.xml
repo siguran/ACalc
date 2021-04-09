@@ -7,4 +7,18 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="sand_btn_notpressed">#FF7400</color>
+    <color name="sand_btn_pressed">#FF9640</color>
+    <color name="sand_main">#FFC273</color>
+    <color name="sand_other">#A64B00</color>
+    <color name="sand_textview">#FEFEDF</color>
+
+    <color name="water_btn_notpressed">#1D7373</color>
+    <color name="water_btn_pressed">#009999</color>
+    <color name="water_main">#33CCCC</color>
+    <color name="water_other">#006363</color>
+    <color name="water_textview">#C5EBE5</color>
+
+
 </resources>

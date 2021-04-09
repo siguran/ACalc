@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="ThemeSand" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:navigationBarColor">@color/sand_other</item>
+        <item name="android:colorPrimary">@color/sand_other</item>
+        <item name="android:colorPrimaryDark">@color/sand_other</item>
+        <item name="android:windowBackground">@color/sand_main</item>
+        <item name="android:statusBarColor">@color/sand_other</item>
+
+        <item name="buttonStyle">@style/ButtonsSand</item>
+
+        <item name="actionBarTheme">@style/ActionBarSand</item>
+
+        <item name="android:textViewStyle">@style/TextViewSand</item>
+    </style>
+
+
+    <style name="ActionBarSand"  parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/sand_main</item>
+    </style>
+
+    <style name="TextViewSand"  parent="Base.Widget.AppCompat.TextView">
+        <item name="android:background">@color/sand_textview</item>
+    </style>
+
+    <style name="ButtonsSand"  parent="Base.Widget.AppCompat.Button">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/sand_main</item>
+        <item name="android:background">@drawable/btn_sand</item>
+
+    </style>
+
+
+</resources>

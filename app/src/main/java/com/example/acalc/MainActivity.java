@@ -2,22 +2,25 @@ package com.example.acalc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ClipDescription;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.math.BigDecimal;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 
 public class MainActivity extends AppCompatActivity {
 
     enum Operations{Plus, Minus, Mult, Div};
 
     String displayText;
-    //BigDecimal v1 = BigDecimal.ZERO;
-    //BigDecimal v2 = BigDecimal.ZERO;
-    Double v1 = Double.NaN;
-    Double v2 = Double.NaN;
+    Float v1 = Float.NaN;
+    Float v2 = Float.NaN;
     Boolean newInput = false;
     Boolean isError = false;
     Operations operation;
@@ -26,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeManager.setTheme(this);
+
         setContentView(R.layout.activity_main);
 
         tvDisplay = findViewById(R.id.tvDisplay);
@@ -45,6 +50,82 @@ public class MainActivity extends AppCompatActivity {
         b.setTag(Operations.Div);
 
     }
+
+    @Override
+    public  boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return  true;
+    }
+
+    @Override
+    public  boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.menu_copy:
+                copyValue();
+                return  true;
+            case R.id.menu_paste:
+                pasteValue();
+                return  true;
+            case R.id.menu_settings:
+                startSettings();
+                return  true;
+            case R.id.menu_about:
+                about();
+                return  true;
+
+        }
+
+        return  super.onOptionsItemSelected(item);
+    }
+
+
+    private boolean isNumeric(String s)
+    {
+        if (s == null) return false;
+        try {Float.parseFloat(s);}
+            catch (NumberFormatException e){return  false;}
+        return true;
+    }
+
+    private void about()
+    {
+        Intent activityIntent = new Intent(getApplicationContext(), About.class);
+        startActivity(activityIntent);
+    }
+
+    private void startSettings()
+    {
+        Intent activityIntent = new Intent(getApplicationContext(), Settings.class);
+        startActivity(activityIntent);
+    }
+
+    private void pasteValue()
+    {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard != null)
+        {
+            if (clipboard.hasPrimaryClip() && clipboard.getPrimaryClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN))
+            {
+                ClipData.Item item = clipboard.getPrimaryClip().getItemAt(0);
+                String pasteData = item.getText().toString();
+                if (isNumeric(pasteData)) tvDisplay.setText(pasteData);
+            }
+        }
+    }
+
+    private void copyValue()
+    {
+        ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        if (clipboard != null)
+        {
+            ClipData clip = ClipData.newPlainText("", tvDisplay.getText());
+            clipboard.setPrimaryClip(clip);
+        }
+    }
+
 
     //цифровая кнопка
     public void ButtonNumClick(View view)
@@ -71,8 +152,8 @@ public class MainActivity extends AppCompatActivity {
     //кнопка "сброс"
     public void ButtonClearClick(View view)
     {
-        v1 = Double.NaN;
-        v2 = Double.NaN;
+        v1 = Float.NaN;
+        v2 = Float.NaN;
         newInput = false;
         isError = false;
         tvDisplay.setText("0");
@@ -122,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
     public void ButtonResultClick(View view)
     {
         Calc();
-        v1 = Double.NaN;
+        v1 = Float.NaN;
     }
 
     //смена знака
@@ -151,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (displayText.equals("0.")) displayText = "0";
 
-        v1 = (Double.parseDouble(displayText));
+        v1 = (Float.parseFloat(displayText));
 
         operation = (Operations)((Button)view).getTag();
     }
@@ -161,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
     {
         if (v1.isNaN()) return;
 
-        v2 = Double.parseDouble(displayText);
+        v2 = Float.parseFloat(displayText);
 
         switch (operation)
         {
@@ -175,7 +256,8 @@ public class MainActivity extends AppCompatActivity {
                 v1 *= v2;
                 break;
             case Div:
-                if ((!displayText.equals("0")) && (!displayText.equals("0.")))   v1 /= v2;
+                //if ((!displayText.equals("0")) && (!displayText.equals("0.")))   v1 /= v2;
+                if (!v2.equals(0.0)) v1 /= v2;
                  else
                      {
                          tvDisplay.setText("Divide by 0");
@@ -192,7 +274,7 @@ public class MainActivity extends AppCompatActivity {
             displayText = displayText.substring(0, displayText.length()-2);
 
         tvDisplay.setText(displayText);
-        v2 = Double.NaN;
+        v2 = Float.NaN;
         newInput = true;
     }
 }

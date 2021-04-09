@@ -16,7 +16,16 @@
     <string name="btnOpDivText">/</string>
     <string name="btnResultText">=</string>
     <string name="btnBkspText">bcsp</string>
-    <string name="btnCommaText">.</string>
+    <string name="btnCommaText">,</string>
     <string name="btnSignText">+/-</string>
     <string name="btnClearText">AC</string>
+
+    <string name="menuCmdCopy">Копировать</string>
+    <string name="menuCmdPaste">Вставить</string>
+    <string name="menuCmdSettings">Настройки</string>
+    <string name="menuCmdAbout">О программе</string>
+
+    <string name="thmeNameSand">Песок</string>
+    <string name="thmeNameWater">Вода</string>
+
 </resources>
